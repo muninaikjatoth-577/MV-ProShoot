@@ -1,0 +1,10 @@
+{
+  "name": "mvproshoot",
+  "version": "1.0.0",
+  "description": "MV ProShoot - Real-Time Slot Booking & 3D Stage Platform",
+  "scripts": {
+    "server": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "seed": "npm --prefix server run seed"
+  }
+}
