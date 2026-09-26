@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { X, Calendar, Clock, Video, Tag, CheckCircle2, AlertCircle } from 'lucide-react';
+import { apiUrl } from '../utils/api';
 
 export default function UserDashboardModal({ isOpen, onClose }) {
   const { token, user } = useAuth();
@@ -10,7 +11,7 @@ export default function UserDashboardModal({ isOpen, onClose }) {
   useEffect(() => {
     if (isOpen && token) {
       setLoading(true);
-      fetch('/api/slots/my-bookings', {
+      fetch(apiUrl('/api/slots/my-bookings'), {
         headers: {
           Authorization: `Bearer ${token}`,
         },

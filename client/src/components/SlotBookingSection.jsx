@@ -16,6 +16,7 @@ import {
   ChevronRight,
   X,
 } from 'lucide-react';
+import { apiUrl } from '../utils/api';
 
 export default function SlotBookingSection({
   selectedService,
@@ -63,7 +64,7 @@ export default function SlotBookingSection({
   const fetchSlots = async (date) => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/slots?date=${date}`);
+      const res = await fetch(apiUrl(`/api/slots?date=${date}`));
       const data = await res.json();
       if (data.success) {
         setSlots(data.data);
@@ -151,7 +152,7 @@ export default function SlotBookingSection({
     }
 
     try {
-      const res = await fetch(`/api/slots/${slot._id}/hold`, {
+      const res = await fetch(apiUrl(`/api/slots/${slot._id}/hold`), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -175,7 +176,7 @@ export default function SlotBookingSection({
   // Release held slot
   const handleReleaseSlot = async (slotId) => {
     try {
-      await fetch(`/api/slots/${slotId}/release`, {
+      await fetch(apiUrl(`/api/slots/${slotId}/release`), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -201,7 +202,7 @@ export default function SlotBookingSection({
 
     setBookingSubmitting(true);
     try {
-      const res = await fetch(`/api/slots/${heldSlot._id}/book`, {
+      const res = await fetch(apiUrl(`/api/slots/${heldSlot._id}/book`), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

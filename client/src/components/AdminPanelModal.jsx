@@ -19,6 +19,7 @@ import {
   AlertCircle,
   CheckCircle2,
 } from 'lucide-react';
+import { apiUrl } from '../utils/api';
 
 export default function AdminPanelModal({ isOpen, onClose }) {
   const { token, user } = useAuth();
@@ -43,7 +44,7 @@ export default function AdminPanelModal({ isOpen, onClose }) {
   const fetchBookings = async () => {
     setLoading(true);
     try {
-      const res = await fetch('/api/slots/admin/all-bookings', {
+      const res = await fetch(apiUrl('/api/slots/admin/all-bookings'), {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -99,7 +100,7 @@ export default function AdminPanelModal({ isOpen, onClose }) {
     setSlotCreatedMsg('');
 
     try {
-      const res = await fetch('/api/slots', {
+      const res = await fetch(apiUrl('/api/slots'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

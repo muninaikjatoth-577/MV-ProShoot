@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { X, Lock, Mail, User, Phone, ShieldCheck, Sparkles, AlertCircle, ArrowRight } from 'lucide-react';
+import { apiUrl } from '../utils/api';
 
 export default function AuthModal({ isOpen, onClose, portalMode = 'client', onAdminLoginSuccess }) {
   const { login } = useAuth();
@@ -34,7 +35,7 @@ export default function AuthModal({ isOpen, onClose, portalMode = 'client', onAd
     const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
 
     try {
-      const res = await fetch(endpoint, {
+      const res = await fetch(apiUrl(endpoint), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

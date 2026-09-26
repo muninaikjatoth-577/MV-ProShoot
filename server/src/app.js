@@ -11,8 +11,13 @@ const app = express();
 // Middlewares
 app.use(
   cors({
-    origin: '*',
+    origin: (origin, callback) => {
+      // Allow all origins (Vercel preview & production domains, localhost)
+      callback(null, true);
+    },
     credentials: true,
+    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
 app.use(express.json());

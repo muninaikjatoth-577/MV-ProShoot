@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Sparkles, CheckCircle2, Clock, IndianRupee, Video, ArrowRight } from 'lucide-react';
+import { apiUrl } from '../utils/api';
 
 export default function ServicesSection({ onSelectService, selectedServiceId }) {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/services')
+    fetch(apiUrl('/api/services'))
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
